@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: cloud-provider-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/springcloudtb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+
+mybatis:
+  mapper-locations: classpath:mapper/PaymentService.xml  #寻找mapper.xml
+  type-aliases-package: com.lc.springcloud.domain

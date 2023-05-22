@@ -1,0 +1,43 @@
+package com.lc.springcloud.controller;
+
+import com.lc.springcloud.domain.CommResult;
+import com.lc.springcloud.domain.Payment;
+import com.lc.springcloud.service.PaymentService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+
+/**
+ * @Author Lc
+ * @Date 2023/5/22
+ * @Description
+ */
+@RestController
+@Slf4j
+public class PaymentController {
+    @Resource
+    private PaymentService paymentService;
+
+    @PostMapping(value = "/payment/insert")
+    public CommResult<?> insert(Payment payment){
+        int result = paymentService.add(payment);
+        long id = payment.getId();
+        log.info("插入的结果是{},id是{}",result,id);
+        if(result < 0){
+            return new CommResult<>(4444,"插入数据失败",null);
+        }
+        return new CommResult<>(200,"插入数据成功",result);
+    }
+
+    @GetMapping(value = "/payment/get/{id}")
+    public CommResult<?> getPaymentById(@PathVariable("id") Long id){
+        Payment payment = paymentService.getPaymentById(id);
+        log.info("查询的结果是{}",payment);
+        if(payment == null){
+            return new CommResult<>(4444,"没有对于的记录,查询id:"+ id,null);
+        }
+        return new CommResult<>(200,"查询成功",payment);
+    }
+
+}
