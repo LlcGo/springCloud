@@ -20,7 +20,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping(value = "/payment/insert")
-    public CommResult<?> insert(Payment payment){
+    public CommResult<?> insert(@RequestBody Payment payment){
         int result = paymentService.add(payment);
         long id = payment.getId();
         log.info("插入的结果是{},id是{}",result,id);
@@ -31,11 +31,11 @@ public class PaymentController {
     }
 
     @GetMapping(value = "/payment/get/{id}")
-    public CommResult<?> getPaymentById(@PathVariable("id") Long id){
+    public CommResult<Payment> getPaymentById(@PathVariable("id") Long id){
         Payment payment = paymentService.getPaymentById(id);
         log.info("查询的结果是{}",payment);
         if(payment == null){
-            return new CommResult<>(4444,"没有对于的记录,查询id:"+ id,null);
+            return new CommResult<>(4444,"没有关于它的记录,查询id:"+ id,null);
         }
         return new CommResult<>(200,"查询成功",payment);
     }
