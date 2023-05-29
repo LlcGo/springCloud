@@ -7,14 +7,14 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @Author Lc
- * @Date 2023/5/24
+ * @Date 2023/5/28
  * @Description
  */
 @Configuration
-public class ApplicationContext{
+public class ConsulConfig {
 
     @Bean
-//    @LoadBalanced
+    @LoadBalanced
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
