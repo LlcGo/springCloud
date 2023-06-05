@@ -10,6 +10,7 @@ import springcloud.service.PaymentService;
 
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author Lc
@@ -50,4 +51,16 @@ public class PaymentController {
     public String getServer(){
         return serverPort;
     }
+
+    //模拟业务超时
+    @GetMapping("/produce/timeout")
+    public String timeOut() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
+    }
+
 }
