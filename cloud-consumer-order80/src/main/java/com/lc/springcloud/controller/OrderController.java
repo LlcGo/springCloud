@@ -60,5 +60,9 @@ public class OrderController {
     }
 
 
+    @GetMapping("/consumer/payment/test")
+    public String hello(){
+        return restTemplate.getForObject(PAYMENT_URL+"/test/sleuth",String.class);
+    }
 
 }

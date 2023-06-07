@@ -22,6 +22,4 @@ public class MainPayMent8001 {
         SpringApplication.run(MainPayMent8001.class,args);
     }
 
-
-
 }

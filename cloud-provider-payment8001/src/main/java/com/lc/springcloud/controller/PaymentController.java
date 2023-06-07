@@ -82,4 +82,9 @@ public class PaymentController {
         }
         return serverPort;
     }
+
+    @GetMapping("/test/sleuth")
+    public String hello(){
+        return "hello,sleuth";
+    }
 }
